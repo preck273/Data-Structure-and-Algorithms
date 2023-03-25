@@ -14,6 +14,8 @@ public class Main {
         names[4] = "S";
 
         System.out.println(names);
+	// write your code here
+        System.out.println("hello world");
     }
 
 }
