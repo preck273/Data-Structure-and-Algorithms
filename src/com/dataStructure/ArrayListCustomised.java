@@ -1,11 +1,11 @@
 package com.dataStructure;
 
-public class ArrayList {
+public class ArrayListCustomised {
     public Integer[] list;
     public int arrSize; //Counter for how much space is actually being used
     public int size; //Actual size counter
 
-    public ArrayList(Integer size) {
+    public ArrayListCustomised(Integer size) {
         this.size = size;
         list = new Integer[size]; //Can assign size to arrayList / for indexing
         arrSize = 0;
@@ -129,29 +129,29 @@ public class ArrayList {
         return unsorted;
     }
 
-    //  Implement bubbleSort in binarySearch
-    public Integer[] mergeSort(Integer[] unsorted){
-        int max = unsorted.length;
-        if (max<= 1) return ;
-
-        int mid = max/2;
-
-        Integer[] left = new Integer[mid];
-        Integer[] right = new Integer[max - mid];
-
-
-
-        for (int i = 0; i< unsorted.length -1; i++ ){
-            for (int j = 0; j < unsorted.length -i -1; j++ ){
-                if(unsorted[j]> unsorted[j+1]){
-                    tempI = unsorted[j];
-                    unsorted[j] = unsorted[j+1];
-                    unsorted[j+1] = tempI;
-                }
-            }
-        }
-        return unsorted;
-    }
+//    //  Implement bubbleSort in binarySearch
+//    public Integer[] mergeSort(Integer[] unsorted){
+//        int max = unsorted.length;
+//        if (max<= 1) return ;
+//
+//        int mid = max/2;
+//
+//        Integer[] left = new Integer[mid];
+//        Integer[] right = new Integer[max - mid];
+//
+//
+//
+//        for (int i = 0; i< unsorted.length -1; i++ ){
+//            for (int j = 0; j < unsorted.length -i -1; j++ ){
+//                if(unsorted[j]> unsorted[j+1]){
+//                    tempI = unsorted[j];
+//                    unsorted[j] = unsorted[j+1];
+//                    unsorted[j+1] = tempI;
+//                }
+//            }
+//        }
+//        return unsorted;
+//    }
 
 
 }
