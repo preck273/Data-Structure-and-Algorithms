@@ -1,22 +1,24 @@
 package com.dataStructure;
 
 import LinkedList.LinkedListCustomized;
+import java.util.Arrays;
 
 public class Main {
 
     public static void main(String[] args) {
 
+        ArrayList namer = new ArrayList(10);
+        Integer[] names = {1,3,4,2,7,3,11,9,7,2,10};
 
-        String[] names= new String[5];
+        namer.addall(names);
 
-        names[0] = "J";
-        names[1] = "A";
-        names[2] = "M";
-        names[3] = "E";
-        names[4] = "S";
+        Math.round(2);
 
-        names= new String[5];
-        System.out.println(names[0]);
+        System.out.println(Arrays.toString(namer.list));
+        System.out.println(namer.contains(3));
+
+
+//        System.out.println(namer.contains(10));
 	// write your code here
         System.out.println("hello world");
 
@@ -39,6 +41,7 @@ public class Main {
 //        System.out.println(linkedListCustomized.getLast());
 //        System.out.println(linkedListCustomized.get(0));
 
+//        System.out.println("hello world");
     }
 
 }
