@@ -33,7 +33,7 @@ public class ArrayList {
     }
 
     public void remove(int position){
-        for (int i = position; i<= arrSize; i++ ){
+        for (int i = position; i< arrSize; i++ ){
             list[i] = list[i+1];
         }
         list[arrSize] = null;
@@ -54,45 +54,104 @@ public class ArrayList {
         this.arrSize = arrSize;
     }
 
-//    Implements Linear Sort
+//    Implements BinarySearch
     public boolean contains(Integer value){
-        return linearSearch(list,value);
-    }
-
-    //    Implements index of sort, get index array Hashmap of index and value
-    public boolean indexof(Integer value){
-        return linearSearch(list,value);
-    }
-
-    public boolean linearSearch(Integer[] unsorted, Integer value){
         boolean found = false;
-        for (int i = 0; i<= unsorted.length; i++ ){
-            if (list[i].equals(value)){
-                found = true;
+
+        Integer[] clean = new Integer[arrSize];
+
+        for (int i = 0; i< list.length -1; i++ ){
+            if(list[i] != null){
+                clean[i] = list[i];
             }
+        }
+        int index = binarySearch(clean,value);
+        if( index >= 0){
+            found = true;
         }
         return found;
     }
 
-//        sort
-//    look with middle
-    public void binarySearch(Integer[] unsorted){
-        for (int i = 0; i<= unsorted.length; i++ ){
-            list[i] = list[i+1];
-        }
+    //    Implements index, if non return -1
+//    Implements Linear Search
+    public Integer indexof(Integer value){
+        return linearSearch(list,value);
     }
 
-    public void bubbleSort(Integer[] unsorted){
+//    Sequentially go through the list
+    public Integer linearSearch(Integer[] unsorted, Integer value){
+        for (int i = 0; i< unsorted.length; i++ ){
+            if (list[i].equals(value)){
+                return i;
+
+            }
+        }
+        return -1;
+    }
+
+//        sort
+//    look with middle
+    public Integer binarySearch(Integer[] unsorted, Integer value){
+        Integer[] sorted = bubbleSort(unsorted);
+        int min = 0;
+        int max = sorted.length -1;
+
+        while (min <= max){
+            int mid = Math.round(max+min/2);
+            int midValue = sorted[mid];
+
+            if(value == midValue){
+                return mid;
+            }
+            else if(value< midValue){
+                max = mid-1;
+            }
+            else if(value< midValue){
+                min = mid+1;
+            }
+        }
+        return -1;
+    }
+
+//  Implement bubbleSort in binarySearch
+    public Integer[] bubbleSort(Integer[] unsorted){
         Integer tempI;
-        Integer tempJ;
 
-        for (int i = 0; i<= unsorted.length -1; i++ ){
-            for (int j = 1; j <= unsorted.length; j++ ){
-                if(unsorted[j]> unsorted[i]){
-
+        for (int i = 0; i< unsorted.length -1; i++ ){
+            for (int j = 0; j < unsorted.length -i -1; j++ ){
+                if(unsorted[j]> unsorted[j+1]){
+                    tempI = unsorted[j];
+                    unsorted[j] = unsorted[j+1];
+                    unsorted[j+1] = tempI;
                 }
             }
         }
+        return unsorted;
     }
+
+    //  Implement bubbleSort in binarySearch
+    public Integer[] mergeSort(Integer[] unsorted){
+        int max = unsorted.length;
+        if (max<= 1) return ;
+
+        int mid = max/2;
+
+        Integer[] left = new Integer[mid];
+        Integer[] right = new Integer[max - mid];
+
+
+
+        for (int i = 0; i< unsorted.length -1; i++ ){
+            for (int j = 0; j < unsorted.length -i -1; j++ ){
+                if(unsorted[j]> unsorted[j+1]){
+                    tempI = unsorted[j];
+                    unsorted[j] = unsorted[j+1];
+                    unsorted[j+1] = tempI;
+                }
+            }
+        }
+        return unsorted;
+    }
+
 
 }
