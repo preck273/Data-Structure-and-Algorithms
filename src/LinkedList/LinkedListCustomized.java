@@ -1,5 +1,8 @@
 package LinkedList;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LinkedListCustomized<T> implements CustomizedLinkedList{
 
     private int size;
@@ -62,7 +65,7 @@ public class LinkedListCustomized<T> implements CustomizedLinkedList{
         this.size++;
     }
 
-//metho to get the vaule of an element in the node.
+//method to implement linear search.
     @Override
     public Object get(int index) {
 //check if the index is zero return the value oif the first node(head of the list)
@@ -172,4 +175,63 @@ public class LinkedListCustomized<T> implements CustomizedLinkedList{
             this.removeFirst();
         }
     }
+
+    public int search(T element)
+    {
+
+        if (head == null) {
+            return -1;
+        }
+
+        int index = 0;
+        Node<T> temp = head;
+
+        // While loop is used to search the entire Linked
+        // List starting from the tail
+        while (temp != null) {
+
+            // Returns the index of that particular element,
+            // if found.
+            if (temp.data == element) {
+                return index;
+            }
+
+            // Gradually increases index while
+            // traversing through the Linked List
+            index++;
+            temp = temp.next;
+        }
+
+        // Returns -1 if the element is not found
+        return -1;
+    }
+
+    public int getLength() {
+        int length = 1;
+        Node<T> currentNode = this.head;
+
+        while (currentNode.next !=null){
+            currentNode = currentNode.next;
+            length++;
+        }
+
+        return length;
+    }
+
+    //method to convert linkedList to array
+    public List<Integer> convertToArray() {
+
+        List<Integer> arr = new ArrayList<Integer>(getLength());
+
+        Node<T> currentNode = this.head;
+            int length = this.getLength();
+        while (length > 0){
+            arr.add((Integer) currentNode.data);
+            currentNode = currentNode.next;
+            length--;
+        }
+        return arr;
+    }
 }
+
+

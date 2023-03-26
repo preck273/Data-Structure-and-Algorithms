@@ -1,5 +1,7 @@
 package com.dataStructure;
 
+import LinkedList.LinkedListCustomized;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -17,6 +19,26 @@ public class Main {
         System.out.println(names[0]);
 	// write your code here
         System.out.println("hello world");
+
+        LinkedListCustomized linkedListCustomized = new LinkedListCustomized();
+
+        linkedListCustomized.addFirst(1);
+        linkedListCustomized.addLast(2);
+        linkedListCustomized.addLast(3);
+        linkedListCustomized.addLast(4);
+        linkedListCustomized.addLast(5);
+
+
+        System.out.println(linkedListCustomized.get(2));
+
+        System.out.println(linkedListCustomized.getLength());
+
+        System.out.println(linkedListCustomized.convertToArray());
+
+
+//        System.out.println(linkedListCustomized.getLast());
+//        System.out.println(linkedListCustomized.get(0));
+
     }
 
 }
