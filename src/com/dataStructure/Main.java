@@ -13,7 +13,8 @@ public class Main {
         names[3] = "E";
         names[4] = "S";
 
-        System.out.println(names);
+        names= new String[5];
+        System.out.println(names[0]);
 	// write your code here
         System.out.println("hello world");
     }

@@ -1,23 +1,23 @@
 package com.dataStructure;
 
 public class ArrayList {
-    public String[] list;
+    public Integer[] list;
     public int arrSize; //Counter for how much space is actually being used
     public int size; //Actual size counter
 
     public ArrayList(Integer size) {
         this.size = size;
-        list = new String[size]; //Can assign size to arrayList / for indexing
+        list = new Integer[size]; //Can assign size to arrayList / for indexing
         arrSize = 0;
     }
 
-    //    Add a String to the ArrayList
-    public void arrAdd(String value){
+    //    Add a Integer to the ArrayList
+    public void add(Integer value){
         list[arrSize] = value;
         arrSize++;
 
         if(arrSize+ 1 == list.length){
-            String[] increasedArr = new String[size*2];
+            Integer[] increasedArr = new Integer[size*2];
             for (int i = 0; i< list.length; i++){
                 increasedArr[i] = list[i];
             }
@@ -25,14 +25,14 @@ public class ArrayList {
         }
     }
 
-//    Add an entire String List to the ArrayList
-    public void arrAddAll(String[] values){
-        for (String value: values){
-            arrAdd(value);
+//    Add an entire Integer List to the ArrayList
+    public void addall(Integer[] values){
+        for (Integer value: values){
+            add(value);
         }
     }
 
-    public void arrRemove(int position){
+    public void remove(int position){
         for (int i = position; i<= arrSize; i++ ){
             list[i] = list[i+1];
         }
@@ -41,9 +41,8 @@ public class ArrayList {
     }
 
     //    Clear the ArrayList
-    public void arrRemoveAll(){
-        String[] emptyArr = new String[size];
-        list= emptyArr;
+    public void removeAll(){
+        list= new Integer[size];
         arrSize = 0;
     }
 
@@ -54,4 +53,46 @@ public class ArrayList {
     public void setArrSize(int arrSize) {
         this.arrSize = arrSize;
     }
+
+//    Implements Linear Sort
+    public boolean contains(Integer value){
+        return linearSearch(list,value);
+    }
+
+    //    Implements index of sort, get index array Hashmap of index and value
+    public boolean indexof(Integer value){
+        return linearSearch(list,value);
+    }
+
+    public boolean linearSearch(Integer[] unsorted, Integer value){
+        boolean found = false;
+        for (int i = 0; i<= unsorted.length; i++ ){
+            if (list[i].equals(value)){
+                found = true;
+            }
+        }
+        return found;
+    }
+
+//        sort
+//    look with middle
+    public void binarySearch(Integer[] unsorted){
+        for (int i = 0; i<= unsorted.length; i++ ){
+            list[i] = list[i+1];
+        }
+    }
+
+    public void bubbleSort(Integer[] unsorted){
+        Integer tempI;
+        Integer tempJ;
+
+        for (int i = 0; i<= unsorted.length -1; i++ ){
+            for (int j = 1; j <= unsorted.length; j++ ){
+                if(unsorted[j]> unsorted[i]){
+
+                }
+            }
+        }
+    }
+
 }
