@@ -129,29 +129,34 @@ public class ArrayListCustomised {
         return unsorted;
     }
 
-//    //  Implement bubbleSort in binarySearch
-//    public Integer[] mergeSort(Integer[] unsorted){
-//        int max = unsorted.length;
-//        if (max<= 1) return ;
-//
-//        int mid = max/2;
-//
-//        Integer[] left = new Integer[mid];
-//        Integer[] right = new Integer[max - mid];
-//
-//
-//
-//        for (int i = 0; i< unsorted.length -1; i++ ){
-//            for (int j = 0; j < unsorted.length -i -1; j++ ){
-//                if(unsorted[j]> unsorted[j+1]){
-//                    tempI = unsorted[j];
-//                    unsorted[j] = unsorted[j+1];
-//                    unsorted[j+1] = tempI;
-//                }
-//            }
-//        }
-//        return unsorted;
-//    }
+//    Implements insertionSort to return clean sorted list
+    public Integer[] arrSort(){
+        return insertionSort(list);
+    }
 
+    public Integer[] insertionSort(Integer[] input)
+    {
 
+        Integer[] unsorted = input;
+        Integer[] clean = new Integer[arrSize];
+
+        for (int i = 0; i< list.length -1; i++ ){
+            if(list[i] != null){
+                clean[i] = list[i];
+            }
+        }
+
+        for (int i = 0; i< clean.length; i++ ) {
+            int temp = clean[i];
+
+            int j = i-1;
+            while((j>= 0&& clean[j] > temp)){
+                clean[j+1] = clean[j];
+                j--;
+        }
+            clean[j+1] = temp;
+        }
+
+        return clean;
+    }
 }
