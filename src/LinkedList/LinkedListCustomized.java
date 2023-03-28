@@ -1,6 +1,8 @@
 package LinkedList;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import com.dataStructure.ArrayListCustomised;
 
@@ -233,9 +235,10 @@ public class LinkedListCustomized<T> implements CustomizedLinkedList{
         }
         return arr;
     }
+
     //method to check if linked list contains value
     //First convert linkedList to arrayList then to arraylistCustomized
-    //then calls binary search using bubble sort  
+    //then calls binary search using bubble sort
     public boolean contains(int value){
         Integer [] array = new Integer[this.getLength()];
         array = this.convertToArray().toArray(new Integer[0]);
@@ -244,6 +247,26 @@ public class LinkedListCustomized<T> implements CustomizedLinkedList{
         list.addall(array);
 
         return list.contains(value);
+    }
+
+
+    //to convert Linked list to Iterator<Integer> in the descending order
+    //First convert linkedList to arrayList sort in desc using reverse linear sort
+    //then calls converts from arrayList to Iterator
+
+    public Iterator<Integer> descendingIterator(){
+
+        Integer [] array = new Integer[this.getLength()];
+        array = this.convertToArray().toArray(new Integer[0]);
+
+        ArrayListCustomised list = new ArrayListCustomised(this.getLength());
+        list.addall(array);
+
+        Integer[] result = list.descendingInsertionSort();
+
+        Iterator<Integer> iterator = Arrays.asList(result).iterator();
+
+        return iterator;
     }
 }
 

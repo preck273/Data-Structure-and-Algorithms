@@ -1,5 +1,8 @@
 package com.dataStructure;
 
+import java.util.Arrays;
+import java.util.Iterator;
+
 public class ArrayListCustomised {
     public Integer[] list;
     public int arrSize; //Counter for how much space is actually being used
@@ -56,7 +59,6 @@ public class ArrayListCustomised {
 
 //    Implements BinarySearch
     public boolean contains(Integer value){
-        boolean found = false;
 
         Integer[] clean = new Integer[arrSize];
 
@@ -67,9 +69,12 @@ public class ArrayListCustomised {
         }
         int index = binarySearch(clean,value);
         if( index >= 0){
-            found = true;
+            return true;
         }
-        return found;
+        else{
+
+            return false;
+        }
     }
 
     //    Implements index, if non return -1
@@ -134,6 +139,20 @@ public class ArrayListCustomised {
         return insertionSort(list);
     }
 
+    //    Implements insertionSort to return clean sorted list
+    public Integer[] descendingInsertionSort(){
+        Integer[] ascSorted =  insertionSort(list);
+        Integer[] result = new Integer[arrSize];
+
+        int counter = 0;
+        for (int i =arrSize-1 ; i>=0; i--){
+            result[counter] = ascSorted[i];
+            counter++;
+        }
+
+        return result;
+    }
+
     public Integer[] insertionSort(Integer[] input)
     {
 
@@ -159,4 +178,6 @@ public class ArrayListCustomised {
 
         return clean;
     }
+
+
 }
