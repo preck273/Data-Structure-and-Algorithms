@@ -19,6 +19,7 @@ public class Main {
 //        System.out.println(namer.contains(10));
 	// write your code here
 //        System.out.println("hello world");
+
 //
         LinkedListCustomized linkedListCustomized = new LinkedListCustomized();
 //
@@ -51,6 +52,9 @@ public class Main {
         }
 
 //        System.out.println("hello world");
+        long endTime = System.currentTimeMillis();
+        long duration = endTime - startTime;
+        System.out.println("Time taken: " + duration + " milliseconds");
     }
 
 }
