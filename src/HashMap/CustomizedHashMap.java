@@ -38,16 +38,17 @@ public class CustomizedHashMap<K, V>{
 
     }
 
-    private final int SIZE = 5;
+    private int size;
 
     private InputNode<K, V> input[];
 
-    public CustomizedHashMap() {
-        input = new InputNode[SIZE];
+    public CustomizedHashMap(int size) {
+        this.size = size;
+        input = new InputNode[this.size];
     }
 
     public void put(K key, V value) {
-        int hash = key.hashCode() % SIZE;
+        int hash = key.hashCode() % this.size;
         InputNode<K, V> e = input[hash];
 
         if (e == null) {
@@ -71,7 +72,7 @@ public class CustomizedHashMap<K, V>{
     }
 
     public V get(K key) {
-        int hash = key.hashCode() % SIZE;
+        int hash = key.hashCode() % this.size;
         InputNode<K, V> e = input[hash];
 
         if (e == null) {
@@ -89,7 +90,7 @@ public class CustomizedHashMap<K, V>{
     }
 
     public InputNode<K, V> remove(K key) {
-        int hash = key.hashCode() % SIZE;
+        int hash = key.hashCode() % this.size;
         InputNode<K, V> e = input[hash];
 
         if (e == null) {
@@ -121,7 +122,7 @@ public class CustomizedHashMap<K, V>{
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < SIZE; i++) {
+        for (int i = 0; i < this.size; i++) {
             if (input[i] != null) {
                 sb.append(i + " " + input[i] + "\n");
             } else {

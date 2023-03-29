@@ -124,6 +124,13 @@ public class LinkedListCustomized<T> implements CustomizedLinkedList{
         this.size--;
     }
 
+    public void addAll(Integer[] values) {
+
+        for (int i = 0; i< values.length; i++) {
+            addLast(values[i]);
+        }
+    }
+
     //this method loop over the list to look for the last element in the list
     @Override
     public void removeLast() {
