@@ -20,7 +20,7 @@ public class ArrayListCustomised {
         arrSize++;
 
         if(arrSize+ 1 == list.length){
-            Integer[] increasedArr = new Integer[size*2];
+            Integer[] increasedArr = new Integer[arrSize*2];
             for (int i = 0; i< list.length; i++){
                 increasedArr[i] = list[i];
             }
@@ -40,7 +40,10 @@ public class ArrayListCustomised {
             list[i] = list[i+1];
         }
         list[arrSize] = null;
-        arrSize--;
+        if(arrSize>=0){
+            arrSize--;
+        }
+
     }
 
     //    Clear the ArrayList
@@ -67,6 +70,7 @@ public class ArrayListCustomised {
                 clean[i] = list[i];
             }
         }
+
         int index = binarySearch(clean,value);
         if( index >= 0){
             return true;
@@ -102,7 +106,7 @@ public class ArrayListCustomised {
         int max = sorted.length -1;
 
         while (min <= max){
-            int mid = Math.round(max+min/2);
+            int mid = (int) max/2;
             int midValue = sorted[mid];
 
             if(value == midValue){
@@ -111,7 +115,7 @@ public class ArrayListCustomised {
             else if(value< midValue){
                 max = mid-1;
             }
-            else if(value< midValue){
+            else {
                 min = mid+1;
             }
         }
@@ -137,6 +141,19 @@ public class ArrayListCustomised {
 //    Implements insertionSort to return clean sorted list
     public Integer[] arrSort(){
         return insertionSort(list);
+    }
+
+    //   Returns array list
+    public Integer[] toArray(){
+
+        Integer[] clean = new Integer[arrSize];
+
+        for (int i = 0; i< list.length -1; i++ ){
+            if(list[i] != null){
+                clean[i] = list[i];
+            }
+        }
+        return clean;
     }
 
     //    Implements insertionSort to return clean sorted list

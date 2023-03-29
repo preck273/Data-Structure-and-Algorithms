@@ -128,6 +128,7 @@ public class Main {
 //            JOptionPane.showMessageDialog(null, "You are "+height+" cm tall");
 //        }
 
+        Gui gui = new Gui();
 
         }
 
