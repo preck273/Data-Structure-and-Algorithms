@@ -79,7 +79,7 @@ public class LinkedListCustomized<T> implements CustomizedLinkedList{
         if (index == 0){
             return (T) this.head.data;
         }
-// if the index is not zero, it loops through the list increamenting the current index 0 and compare it with the received parameter until match s found
+// if the index is not zero, it loops through the list increamenting the current index 0 and compare it with the received parameter until match is found
         int currentIndex = 0;
         Node<T> currentNode = this.head;
 
@@ -186,36 +186,6 @@ public class LinkedListCustomized<T> implements CustomizedLinkedList{
         }
     }
 
-    public int search(T element)
-    {
-
-        if (head == null) {
-            return -1;
-        }
-
-        int index = 0;
-        Node<T> temp = head;
-
-        // While loop is used to search the entire Linked
-        // List starting from the tail
-        while (temp != null) {
-
-            // Returns the index of that particular element,
-            // if found.
-            if (temp.data == element) {
-                return index;
-            }
-
-            // Gradually increases index while
-            // traversing through the Linked List
-            index++;
-            temp = temp.next;
-        }
-
-        // Returns -1 if the element is not found
-        return -1;
-    }
-
     public int getLength() {
         int length = 1;
         Node<T> currentNode = this.head;
@@ -256,6 +226,15 @@ public class LinkedListCustomized<T> implements CustomizedLinkedList{
         return list.contains(value);
     }
 
+    public Integer[] toArrayList(){
+        Integer [] array = new Integer[this.getLength()];
+        array = this.convertToArray().toArray(new Integer[0]);
+
+        ArrayListCustomised list = new ArrayListCustomised(this.getLength());
+        list.addall(array);
+
+        return list.cleanArrayList();
+    }
 
     //to convert Linked list to Iterator<Integer> in the descending order
     //First convert linkedList to arrayList sort in desc using reverse linear sort
@@ -276,5 +255,4 @@ public class LinkedListCustomized<T> implements CustomizedLinkedList{
         return iterator;
     }
 }
-
 

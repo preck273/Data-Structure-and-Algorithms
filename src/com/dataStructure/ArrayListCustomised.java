@@ -2,6 +2,7 @@ package com.dataStructure;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 public class ArrayListCustomised {
     public Integer[] list;
@@ -60,6 +61,17 @@ public class ArrayListCustomised {
         this.arrSize = arrSize;
     }
 
+    public Integer[] cleanArrayList(){
+        Integer[] clean = new Integer[arrSize];
+
+        for (int i = 0; i< list.length -1; i++ ){
+            if(list[i] != null){
+                clean[i] = list[i];
+            }
+        }
+        return clean;
+    }
+
 //    Implements BinarySearch
     public boolean contains(Integer value){
 
@@ -71,20 +83,20 @@ public class ArrayListCustomised {
             }
         }
 
-        int index = binarySearch(clean,value);
-        if( index >= 0){
-            return true;
-        }
-        else{
-
-            return false;
-        }
+        return binarySearch(clean,value);
+//        if( index >= 0){
+//            return true;
+//        }
+//        else{
+//
+//            return false;
+//        }
     }
 
     //    Implements index, if non return -1
 //    Implements Linear Search
     public Integer indexof(Integer value){
-        return linearSearch(list,value);
+        return linearSearch(cleanArrayList(),value);
     }
 
 //    Sequentially go through the list
@@ -100,17 +112,20 @@ public class ArrayListCustomised {
 
 //        sort
 //    look with middle
-    public Integer binarySearch(Integer[] unsorted, Integer value){
+    public boolean binarySearch(Integer[] unsorted, Integer value){
         Integer[] sorted = bubbleSort(unsorted);
         int min = 0;
-        int max = sorted.length -1;
+        int max = sorted.length-1;
 
-        while (min <= max){
-            int mid = (int) max/2;
+        while (min < max){
+            int mid = (max+min)/2;
             int midValue = sorted[mid];
 
             if(value == midValue){
-                return mid;
+                return true;
+            }
+            if(value == sorted[max]){
+                return true;
             }
             else if(value< midValue){
                 max = mid-1;
@@ -119,7 +134,7 @@ public class ArrayListCustomised {
                 min = mid+1;
             }
         }
-        return -1;
+        return false;
     }
 
 //  Implement bubbleSort in binarySearch

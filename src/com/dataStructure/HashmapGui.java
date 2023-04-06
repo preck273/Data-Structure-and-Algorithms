@@ -7,17 +7,15 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Arrays;
 
-public class Gui implements ActionListener{
+public class HashmapGui implements ActionListener{
 
     JFrame frame;
-    JTextField textField, resultField;
+    JTextField textField, resultField, timeField, linkedlistField;
     JButton[] arrayListButtons = new JButton [9];
     JButton addButton, addAllButton, removeButton, removeAllButton,sizeButton, containsButton, indexButton, sortButton, showArrayButton;
-    JButton arraylistButton, hashmapButton, linkedlistButton;
     JPanel panel;
 
     ArrayListCustomised arrayList = new ArrayListCustomised(5);
-    LinkedListCustomized linkedList = new LinkedListCustomized();
 
     Font myFont = new Font("Calibri", Font.BOLD,30);
 
@@ -25,10 +23,9 @@ public class Gui implements ActionListener{
 
     String operator; // change to action
 
-    Gui(){
+    HashmapGui(){
 
-        frame = new JFrame("ODE");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame = new JFrame("ODE | LinkedList");
         frame.setSize(600,800);
         frame.setLayout(null);
 
@@ -37,6 +34,18 @@ public class Gui implements ActionListener{
         textField.setBounds(75,100,450,50);
         textField.setFont(myFont);
 //        textField.setEditable(false);
+
+//        Page textbox
+        linkedlistField = new JTextField();
+        linkedlistField.setBounds(75,10,450,50);
+        linkedlistField.setFont(myFont);
+        linkedlistField.setEditable(false);
+
+        //        Time textbox
+        timeField = new JTextField();
+        timeField.setBounds(75,650,450,50);
+        timeField.setFont(myFont);
+        timeField.setEditable(false);
 
         //        Input result
         resultField = new JTextField();
@@ -71,15 +80,6 @@ public class Gui implements ActionListener{
             arrayListButtons[i].setFocusable (false);
         }
 
-//        Add Navaigation
-        arraylistButton = new JButton("ArrayList");
-        hashmapButton = new JButton("HashMap");
-        linkedlistButton= new JButton("LinkedList");
-
-//        Place Navigation buttons
-        arraylistButton.setBounds(50,25,100,50);
-        hashmapButton.setBounds(250,25,100,50);
-        linkedlistButton.setBounds(450,25,100,50);
 
 //       Print to panel
         panel = new JPanel();
@@ -98,15 +98,13 @@ public class Gui implements ActionListener{
         panel.add(arrayListButtons[8]);
 
 //        Push nav to screen
-        frame.add(arraylistButton);
-        frame.add(hashmapButton);
-        frame.add(linkedlistButton);
 
         frame.add(panel);
 
 //        Add navigation
 //        frame.remove(panel);
         frame.add(textField);
+        frame.add(timeField);
         frame.add(resultField);
         frame.setVisible(true);
     }
@@ -114,7 +112,11 @@ public class Gui implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == showArrayButton) {
+            long startTime = System.nanoTime();
             resultField.setText(Arrays.toString(arrayList.toArray()));
+            long endTime   = System.nanoTime();
+            long totalTime = (endTime - startTime);
+            timeField.setText(Long.toString((totalTime))+ " nanoseconds");
         }
         if(e.getSource() == addButton) {
             if(isEmpty()){
@@ -122,7 +124,11 @@ public class Gui implements ActionListener{
             }
             else{
                 int input = Integer.parseInt(textField.getText());
+                long startTime = System.nanoTime();
                 arrayList.add(input);
+                long endTime   = System.nanoTime();
+                long totalTime = (endTime - startTime);
+                timeField.setText(Long.toString((totalTime))+ " nanoseconds");
                 resultField.setText(Arrays.toString(arrayList.toArray()));
             }
         }
@@ -131,7 +137,11 @@ public class Gui implements ActionListener{
                 resultField.setText("Enter a list of Integers");
             }
             else{
+                long startTime = System.nanoTime();
                 arrayList.addall(stringtoArray(textField.getText()));
+                long endTime   = System.nanoTime();
+                long totalTime = (endTime - startTime);
+                timeField.setText(Long.toString((totalTime))+ " nanoseconds");
                 resultField.setText(Arrays.toString(arrayList.toArray()));
             }
         }
@@ -148,19 +158,38 @@ public class Gui implements ActionListener{
             resultField.setText(Integer.toString(arrayList.getArrSize()));
         }
         if(e.getSource() == containsButton) {
+            long startTime = System.nanoTime();
+
             if(arrayList.contains(Integer.parseInt(textField.getText()))){
                 resultField.setText(Boolean.toString(arrayList.contains(Integer.parseInt(textField.getText()))));
             }
             else{
                 resultField.setText("false");
             }
+
+            long endTime   = System.nanoTime();
+            long totalTime = (endTime - startTime);
+            timeField.setText(Long.toString((totalTime))+ " nanoseconds");
         }
         if(e.getSource() == indexButton) {
+
+            long startTime = System.nanoTime();
             int input = Integer.parseInt(textField.getText());
+            long endTime   = System.nanoTime();
+            long totalTime = (endTime - startTime);
+            timeField.setText(Long.toString((totalTime))+ " nanoseconds");
             resultField.setText(Integer.toString(arrayList.indexof(input)));
+
+
         }
         if(e.getSource() == sortButton) {
+
+            long startTime = System.nanoTime();
+
             resultField.setText(Arrays.toString(arrayList.arrSort()));
+            long endTime   = System.nanoTime();
+            long totalTime = (endTime - startTime);
+            timeField.setText(Long.toString((totalTime))+ " nanoseconds");
         }
     }
 
@@ -190,3 +219,5 @@ public class Gui implements ActionListener{
     }
 
 }
+
+

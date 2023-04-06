@@ -124,7 +124,7 @@ public class CustomizedHashMap<K, V>{
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < this.size; i++) {
             if (input[i] != null) {
-                sb.append(i + " " + input[i] + "\n");
+                sb.append( input[i] + "\n");
             } else {
                 sb.append(i + " " + "null" + "\n");
             }
