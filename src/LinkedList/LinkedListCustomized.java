@@ -68,7 +68,9 @@ public class LinkedListCustomized<T> implements CustomizedLinkedList{
         this.size++;
     }
 
-//method to implement linear search.
+//method to implement linear search and
+// worse Case time complexity is 0(N)
+    //best case 0(1)
     @Override
     public Object get(int index) {
 //check if the index is zero return the value oif the first node(head of the list)
@@ -79,7 +81,8 @@ public class LinkedListCustomized<T> implements CustomizedLinkedList{
         if (index == 0){
             return (T) this.head.data;
         }
-// if the index is not zero, it loops through the list increamenting the current index 0 and compare it with the received parameter until match is found
+// if the index is not zero, it loops through the list incrementing the current index 0
+// and compare it with the received parameter until match is found
         int currentIndex = 0;
         Node<T> currentNode = this.head;
 

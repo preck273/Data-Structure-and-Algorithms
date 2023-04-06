@@ -73,6 +73,7 @@ public class ArrayListCustomised {
     }
 
 //    Implements BinarySearch
+    //Time Complexity: O(log n)
     public boolean contains(Integer value){
 
         Integer[] clean = new Integer[arrSize];
@@ -95,6 +96,8 @@ public class ArrayListCustomised {
 
     //    Implements index, if non return -1
 //    Implements Linear Search
+    // worse Case time complexity is 0(N)
+    //best case 0(1)
     public Integer indexof(Integer value){
         return linearSearch(cleanArrayList(),value);
     }
@@ -138,6 +141,7 @@ public class ArrayListCustomised {
     }
 
 //  Implement bubbleSort in binarySearch
+    //Time Complexity: O(N2)
     public Integer[] bubbleSort(Integer[] unsorted){
         Integer tempI;
 
@@ -154,6 +158,7 @@ public class ArrayListCustomised {
     }
 
 //    Implements insertionSort to return clean sorted list
+    //Time Complexity: O(N^2)
     public Integer[] arrSort(){
         return insertionSort(list);
     }
