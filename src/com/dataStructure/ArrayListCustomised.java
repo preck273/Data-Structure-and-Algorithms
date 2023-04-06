@@ -115,6 +115,7 @@ public class ArrayListCustomised {
 
 //        sort
 //    look with middle
+    //Time Complexity: O(log n)
     public boolean binarySearch(Integer[] unsorted, Integer value){
         Integer[] sorted = bubbleSort(unsorted);
         int min = 0;

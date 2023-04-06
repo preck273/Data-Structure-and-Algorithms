@@ -219,6 +219,7 @@ public class LinkedListCustomized<T> implements CustomizedLinkedList{
     //method to check if linked list contains value
     //First convert linkedList to arrayList then to arraylistCustomized
     //then calls binary search using bubble sort
+    //Time Complexity: O(N2)
     public boolean contains(int value){
         Integer [] array = new Integer[this.getLength()];
         array = this.convertToArray().toArray(new Integer[0]);
