@@ -13,7 +13,6 @@ public class ArrayListGui implements ActionListener{
     JTextField textField, resultField, timeField;
     JButton[] arrayListButtons = new JButton [9];
     JButton addButton, addAllButton, removeButton, removeAllButton,sizeButton, containsButton, indexButton, sortButton, showArrayButton;
-    JButton arraylistButton, hashmapButton, linkedlistButton;
     JPanel panel;
 
     ArrayListCustomised arrayList = new ArrayListCustomised(5);
@@ -75,23 +74,6 @@ public class ArrayListGui implements ActionListener{
             arrayListButtons[i].setFocusable (false);
         }
 
-//        Add Navaigation
-        arraylistButton = new JButton("ArrayList");
-        arraylistButton.addActionListener(this);
-        arraylistButton.setFocusable (false);
-
-        hashmapButton = new JButton("HashMap");
-        hashmapButton.addActionListener(this);
-        hashmapButton.setFocusable (false);
-
-        linkedlistButton= new JButton("LinkedList");
-        linkedlistButton.addActionListener(this);
-        linkedlistButton.setFocusable (false);
-
-//        Place Navigation buttons
-        arraylistButton.setBounds(50,25,100,50);
-        hashmapButton.setBounds(250,25,100,50);
-        linkedlistButton.setBounds(450,25,100,50);
 
 //       Print to panel
         panel = new JPanel();
@@ -109,10 +91,6 @@ public class ArrayListGui implements ActionListener{
         panel.add(arrayListButtons[7]);
         panel.add(arrayListButtons[8]);
 
-//        Push nav to screen
-        frame.add(arraylistButton);
-        frame.add(hashmapButton);
-        frame.add(linkedlistButton);
 
         frame.add(panel);
 
@@ -205,8 +183,6 @@ public class ArrayListGui implements ActionListener{
             long endTime   = System.nanoTime();
             long totalTime = (endTime - startTime);
             timeField.setText(Long.toString((totalTime))+ " nanoseconds");
-        }
-        if(e.getSource() == arraylistButton){
         }
     }
 

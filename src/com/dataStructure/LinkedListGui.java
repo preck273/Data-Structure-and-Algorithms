@@ -5,7 +5,10 @@ import LinkedList.LinkedListCustomized;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 public class LinkedListGui implements ActionListener{
 
@@ -230,6 +233,12 @@ public class LinkedListGui implements ActionListener{
             long endTime   = System.nanoTime();
             long totalTime = (endTime - startTime);
             timeField.setText(Long.toString((totalTime))+ " nanoseconds");
+            Iterator desc = linkedList.descendingIterator();
+            List<Integer> descarr = new ArrayList<Integer>();
+            while(desc.hasNext()){
+
+            }
+//            resultField.setText(Arrays.toString();
         }
         if(e.getSource() == showArrayButton) {
             long startTime = System.nanoTime();
