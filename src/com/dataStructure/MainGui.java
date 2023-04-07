@@ -1,11 +1,7 @@
 package com.dataStructure;
 
-import LinkedList.LinkedListCustomized;
-
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
-import java.util.Arrays;
 
 public class MainGui implements ActionListener{
     JFrame frame;
@@ -23,7 +19,7 @@ public class MainGui implements ActionListener{
         arraylistButton.addActionListener(this);
         arraylistButton.setFocusable (false);
 
-        hashmapButton = new JButton("HashMap");
+        hashmapButton = new JButton("BinaryTree");
         hashmapButton.addActionListener(this);
         hashmapButton.setFocusable (false);
 
@@ -53,7 +49,7 @@ public class MainGui implements ActionListener{
             new LinkedListGui();
         }
         if(e.getSource() == hashmapButton) {
-            new HashmapGui();
+            new BinaryTreeGui();
         }
     }
 }

@@ -1,11 +1,33 @@
 package BinaryTree;
 
+import com.dataStructure.ArrayListCustomised;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+
 public class CustomizedBinaryTree implements TreeInterface {
 
     private Node tree;
 
+    public List<Integer> toArray = new ArrayList<Integer>();
+
+    public Node getTree() {
+        return tree;
+    }
+
+    public void setTree(Node tree) {
+        this.tree = tree;
+    }
+
     //method to find where to add a new node.
     //if node data is null, add new node to that position
+    //Implements Tree sort
+//    Worst complexity: n*log(n) (balanced)
+//    Average complexity: n*log(n)
+//    Best complexity: n*log(n)
+//    Space complexity: n
     public Node addRecursive(Node current, int data) {
         if (current == null){
             return new Node(data);
@@ -22,10 +44,24 @@ public class CustomizedBinaryTree implements TreeInterface {
         return current;
     }
 
+
     //method to add to the tree node using the addRecursive method
     @Override
     public void add(int data){
         tree = addRecursive(tree, data);
+
+    }
+
+    //method to add a list of values to the tree node using the addRecursive method and
+    // Bubble sort
+    public void addAll(Integer[] array){
+        ArrayListCustomised list = new ArrayListCustomised(array.length);
+
+        Integer[] results = list.bubbleSort(array);
+
+        for (int result:results) {
+            tree = addRecursive(tree, result);
+        }
     }
 
     //method to find an element
@@ -45,6 +81,22 @@ public class CustomizedBinaryTree implements TreeInterface {
     @Override
     public boolean containsNode(int data){
         return containsNodeRecursive(tree, data);
+    }
+
+
+    //Get array
+    public List<Integer> bsttoArray(int type){
+        toArray.clear();
+        if(type == 1){
+            traverseInOrder(tree);
+        }
+        else if(type == 2){
+            traversePreOrder(tree);
+        }
+        else if(type == 3){
+            traversePostOrder(tree);
+        }
+        return toArray;
     }
 
     @Override
@@ -102,19 +154,16 @@ public class CustomizedBinaryTree implements TreeInterface {
     public void delete(int data){
         tree = deleteRecursive(tree, data);
     }
-//method to print
-    private void print(int data){
-        System.out.println(" " + data);
-    }
 
     //Depth-First Search( In order)
+//    Worst-case performance O|V| + |E|, O(b^d) for implicit graphs
+//    Worst-case space complexity O(|V|) where O= O(bd) for implicit graphs
     //first visit the left sub-tree then the root node
     //finally move to the right sub-tree
     public void traverseInOrder(Node tree){
         if (tree != null) {
             traverseInOrder(tree.left);
-            traverseInOrder(tree.left);
-            print(tree.data);
+            toArray.add(tree.data);
             traverseInOrder(tree.right);
         }
     }
@@ -123,7 +172,8 @@ public class CustomizedBinaryTree implements TreeInterface {
     //finally the right sub-tree
     public void traversePreOrder(Node tree){
         if (tree != null) {
-            print(tree.data);
+
+            toArray.add(tree.data);
             traversePreOrder(tree.left);
             traversePreOrder(tree.right);
         }
@@ -135,7 +185,7 @@ public class CustomizedBinaryTree implements TreeInterface {
         if (tree != null){
             traversePostOrder(tree.left);
             traversePostOrder(tree.right);
-            print(tree.data);
+            toArray.add(tree.data);
         }
     }
 

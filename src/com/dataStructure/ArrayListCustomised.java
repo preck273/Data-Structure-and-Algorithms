@@ -159,7 +159,10 @@ public class ArrayListCustomised {
     }
 
 //    Implements insertionSort to return clean sorted list
-    //Time Complexity: O(N^2)
+//    Worst complexity: n^2
+//    Average complexity: n^2
+//    Best complexity: n
+//    Space complexity: 1
     public Integer[] arrSort(){
         return insertionSort(list);
     }

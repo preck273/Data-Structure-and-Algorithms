@@ -1,5 +1,6 @@
 package com.dataStructure;
 
+import BinaryTree.CustomizedBinaryTree;
 import LinkedList.LinkedListCustomized;
 
 import javax.swing.*;
@@ -7,15 +8,15 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Arrays;
 
-public class HashmapGui implements ActionListener{
+public class BinaryTreeGui implements ActionListener{
 
     JFrame frame;
-    JTextField textField, resultField, timeField, linkedlistField;
-    JButton[] arrayListButtons = new JButton [9];
-    JButton addButton, addAllButton, removeButton, removeAllButton,sizeButton, containsButton, indexButton, sortButton, showArrayButton;
+    JTextField textField, hintField, resultField, timeField;
+    JButton[] arrayListButtons = new JButton [8];
+    JButton addButton, addAllButton, containsButton, isEmptyButton,sizeButton, findSmallestButton, deleteButton, showArrayButton;
     JPanel panel;
 
-    ArrayListCustomised arrayList = new ArrayListCustomised(5);
+    CustomizedBinaryTree bt = new CustomizedBinaryTree();
 
     Font myFont = new Font("Calibri", Font.BOLD,30);
 
@@ -23,9 +24,9 @@ public class HashmapGui implements ActionListener{
 
     String operator; // change to action
 
-    HashmapGui(){
+    BinaryTreeGui(){
 
-        frame = new JFrame("ODE | LinkedList");
+        frame = new JFrame("ODE | BinaryTree");
         frame.setSize(600,800);
         frame.setLayout(null);
 
@@ -35,11 +36,12 @@ public class HashmapGui implements ActionListener{
         textField.setFont(myFont);
 //        textField.setEditable(false);
 
-//        Page textbox
-        linkedlistField = new JTextField();
-        linkedlistField.setBounds(75,10,450,50);
-        linkedlistField.setFont(myFont);
-        linkedlistField.setEditable(false);
+        //        hint textbox
+        hintField = new JTextField();
+        hintField.setBounds(10,50,550,50);
+//        hintField.setFont(myFont);
+        hintField.setText("Hint: Type 1: traverseInOrder, Type 2: traversePreOrder,Type 3: traversePostOrder before Show Array");
+        hintField.setEditable(false);
 
         //        Time textbox
         timeField = new JTextField();
@@ -56,30 +58,27 @@ public class HashmapGui implements ActionListener{
 //        Add ArrayList Buttons
         addButton = new JButton("Add");
         addAllButton = new JButton("Addall");
-        removeButton = new JButton("Remove");
-        removeAllButton = new JButton("RemoveAll");
-        sizeButton = new JButton("Size");
         containsButton = new JButton("Contains");
-        indexButton = new JButton("GetIndex");
-        sortButton = new JButton("Sort");
+        isEmptyButton = new JButton("IsEmpty");
+        sizeButton = new JButton("Size");
+        findSmallestButton = new JButton("FindSmallest");
+        deleteButton = new JButton("Delete");
         showArrayButton = new JButton("Show Array");
 
         arrayListButtons[0] = addButton;
         arrayListButtons[1] = addAllButton;
-        arrayListButtons[2] = removeButton;
-        arrayListButtons[3] = removeAllButton;
+        arrayListButtons[2] = containsButton;
+        arrayListButtons[3] = isEmptyButton;
         arrayListButtons[4] = sizeButton;
-        arrayListButtons[5] = containsButton;
-        arrayListButtons[6] = indexButton;
-        arrayListButtons[7] = sortButton;
-        arrayListButtons[8] = showArrayButton;
+        arrayListButtons[5] = findSmallestButton;
+        arrayListButtons[6] = deleteButton;
+        arrayListButtons[7] = showArrayButton;
 
-        for(int i=0;i<9;i++){
+        for(int i=0;i<8;i++){
             arrayListButtons[i].addActionListener(this);
             arrayListButtons[i].setFont(myFont);
             arrayListButtons[i].setFocusable (false);
         }
-
 
 //       Print to panel
         panel = new JPanel();
@@ -95,7 +94,6 @@ public class HashmapGui implements ActionListener{
         panel.add(arrayListButtons[5]);
         panel.add(arrayListButtons[6]);
         panel.add(arrayListButtons[7]);
-        panel.add(arrayListButtons[8]);
 
 //        Push nav to screen
 
@@ -104,6 +102,7 @@ public class HashmapGui implements ActionListener{
 //        Add navigation
 //        frame.remove(panel);
         frame.add(textField);
+        frame.add(hintField);
         frame.add(timeField);
         frame.add(resultField);
         frame.setVisible(true);
@@ -112,8 +111,12 @@ public class HashmapGui implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == showArrayButton) {
+            if(isEmpty()){
+                resultField.setText("Enter an Integer value");
+            }
+            int input = Integer.parseInt(textField.getText());
             long startTime = System.nanoTime();
-            resultField.setText(Arrays.toString(arrayList.toArray()));
+            resultField.setText(bt.bsttoArray(input).toString());
             long endTime   = System.nanoTime();
             long totalTime = (endTime - startTime);
             timeField.setText(Long.toString((totalTime))+ " nanoseconds");
@@ -125,43 +128,18 @@ public class HashmapGui implements ActionListener{
             else{
                 int input = Integer.parseInt(textField.getText());
                 long startTime = System.nanoTime();
-                arrayList.add(input);
+                bt.add(input);
                 long endTime   = System.nanoTime();
                 long totalTime = (endTime - startTime);
                 timeField.setText(Long.toString((totalTime))+ " nanoseconds");
-                resultField.setText(Arrays.toString(arrayList.toArray()));
+                resultField.setText((bt.bsttoArray(1).toString()));
             }
-        }
-        if(e.getSource() == addAllButton) {
-            if(isEmpty()){
-                resultField.setText("Enter a list of Integers");
-            }
-            else{
-                long startTime = System.nanoTime();
-                arrayList.addall(stringtoArray(textField.getText()));
-                long endTime   = System.nanoTime();
-                long totalTime = (endTime - startTime);
-                timeField.setText(Long.toString((totalTime))+ " nanoseconds");
-                resultField.setText(Arrays.toString(arrayList.toArray()));
-            }
-        }
-        if(e.getSource() == removeButton) {
-            int input = Integer.parseInt(textField.getText());
-            arrayList.remove(input);
-            resultField.setText(Arrays.toString(arrayList.toArray()));
-        }
-        if(e.getSource() == removeAllButton) {
-            arrayList.removeAll();
-            resultField.setText(Arrays.toString(arrayList.toArray()));
-        }
-        if(e.getSource() == sizeButton) {
-            resultField.setText(Integer.toString(arrayList.getArrSize()));
         }
         if(e.getSource() == containsButton) {
             long startTime = System.nanoTime();
 
-            if(arrayList.contains(Integer.parseInt(textField.getText()))){
-                resultField.setText(Boolean.toString(arrayList.contains(Integer.parseInt(textField.getText()))));
+            if(bt.containsNode(Integer.parseInt(textField.getText()))){
+                resultField.setText(Boolean.toString(bt.containsNode(Integer.parseInt(textField.getText()))));
             }
             else{
                 resultField.setText("false");
@@ -171,25 +149,36 @@ public class HashmapGui implements ActionListener{
             long totalTime = (endTime - startTime);
             timeField.setText(Long.toString((totalTime))+ " nanoseconds");
         }
-        if(e.getSource() == indexButton) {
-
+        if(e.getSource() == isEmptyButton) {
             long startTime = System.nanoTime();
-            int input = Integer.parseInt(textField.getText());
+            resultField.setText(Boolean.toString(bt.isEmpty()));
             long endTime   = System.nanoTime();
             long totalTime = (endTime - startTime);
             timeField.setText(Long.toString((totalTime))+ " nanoseconds");
-            resultField.setText(Integer.toString(arrayList.indexof(input)));
-
-
         }
-        if(e.getSource() == sortButton) {
-
+        if(e.getSource() == sizeButton) {
             long startTime = System.nanoTime();
-
-            resultField.setText(Arrays.toString(arrayList.arrSort()));
+            resultField.setText(Integer.toString(bt.getSize()));
             long endTime   = System.nanoTime();
             long totalTime = (endTime - startTime);
             timeField.setText(Long.toString((totalTime))+ " nanoseconds");
+        }
+        if(e.getSource() == findSmallestButton) {
+            long startTime = System.nanoTime();
+            resultField.setText(Integer.toString(bt.findSmallestValue(bt.getTree())));
+            long endTime   = System.nanoTime();
+            long totalTime = (endTime - startTime);
+            timeField.setText(Long.toString((totalTime))+ " nanoseconds");
+        }
+        if(e.getSource() == deleteButton) {
+            int input = Integer.parseInt(textField.getText());
+            long startTime = System.nanoTime();
+            bt.delete(input);
+            long endTime   = System.nanoTime();
+            long totalTime = (endTime - startTime);
+            timeField.setText(Long.toString((totalTime))+ " nanoseconds");
+            resultField.setText((bt.bsttoArray(1).toString()));
+
         }
     }
 
