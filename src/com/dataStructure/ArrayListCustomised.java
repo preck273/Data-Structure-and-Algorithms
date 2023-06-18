@@ -6,12 +6,12 @@ import java.util.List;
 
 public class ArrayListCustomised {
     public Integer[] list;
-    public int arrSize; //Counter for how much space is actually being used
-    public int size; //Actual size counter
+    public int arrSize;
+    public int size;
 
     public ArrayListCustomised(Integer size) {
         this.size = size;
-        list = new Integer[size]; //Can assign size to arrayList / for indexing
+        list = new Integer[size];
         arrSize = 0;
     }
 
@@ -222,3 +222,4 @@ public class ArrayListCustomised {
 
 
 }
+

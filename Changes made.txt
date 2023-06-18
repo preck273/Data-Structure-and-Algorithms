@@ -1,0 +1,7 @@
+//make all generic 
+
+//make depth wide sorting perlevel on tree 
+
+//Include a dataset. File with data 
+
+//Make each have a sort itself function
