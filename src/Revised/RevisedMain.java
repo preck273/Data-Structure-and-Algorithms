@@ -77,13 +77,13 @@ public class RevisedMain {
         System.out.println("Size of the tree: " + binaryTree.getSize());
 
         // Convert the binary tree to an array using in-order traversal
-        System.out.println("Binary tree to array (In-order): " + binaryTree.bstToArray(1));
+        System.out.println("Binary tree to array (In-order): " + binaryTree.print(1).bstToArray(1));
 
         // Delete an element from the binary tree
         binaryTree.delete("Tesla");
 
         // Convert the binary tree to an array using pre-order traversal
-        System.out.println("Binary tree to array (Pre-order): " + binaryTree.bstToArray(2));
+        System.out.println("Binary tree to array (Pre-order): " + binaryTree.print(1).bstToArray(2));
 
 //Test levels
         System.out.println("BINARY TREE ADD BY LEVELS");
@@ -91,13 +91,15 @@ public class RevisedMain {
         CustomizedBinaryTreeNew<Integer> tree = new CustomizedBinaryTreeNew<Integer>();
 
         // Add values by level
-        List<Integer> intvalues = Arrays.asList(1,2);
+        List<Integer> intvalues = Arrays.asList(1,2,3,4,5,6,7,8,9);
         tree.addByLevel(intvalues);
 
         // Test the getLevel function
-        int valueToFind = 2;
+        int valueToFind = 4;
         int level = tree.getLevel(valueToFind);
         System.out.println(valueToFind + " is on level: " + level);
+
+        System.out.println("Binary tree to array (In-order): " + tree.bstToArray(1));
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         System.out.println("                                                                                                                    ");
 

@@ -6,6 +6,7 @@ public class CustomizedBinaryTreeNew<T extends Comparable<T>> implements TreeInt
 
     private NodeNew<T> tree;
     public List<T> toArray = new ArrayList<T>();
+    CustomizedBinaryTreeNew<T> result;
 
     public NodeNew<T> getTree() {
         return tree;
@@ -42,7 +43,6 @@ public class CustomizedBinaryTreeNew<T extends Comparable<T>> implements TreeInt
         }
     }
 
-
     public void addByLevel(List<T> values) {
         if (values.isEmpty()) {
             return;
@@ -72,22 +72,25 @@ public class CustomizedBinaryTreeNew<T extends Comparable<T>> implements TreeInt
 
                 // Create left child if available
                 if (leftIndex < rightIndex) {
-                    NodeNew<T> leftChild = new NodeNew<T>(values.get(++leftIndex));
+                    NodeNew<T> leftChild = new NodeNew<T>(values.get(leftIndex));
                     parent.left = leftChild;
                     queue.offer(leftChild);
+                    leftIndex++;
                 }
 
                 // Create right child if available
                 if (leftIndex < rightIndex) {
-                    NodeNew<T> rightChild = new NodeNew<T>(values.get(++leftIndex));
+                    NodeNew<T> rightChild = new NodeNew<T>(values.get(rightIndex));
                     parent.right = rightChild;
                     queue.offer(rightChild);
+                    rightIndex--;
                 }
             }
 
             level++;
         }
     }
+
 
     // Return level of value you're looking for
     public int getLevel(T value) {
@@ -138,6 +141,8 @@ public class CustomizedBinaryTreeNew<T extends Comparable<T>> implements TreeInt
     // Method to convert the tree to an array based on the given type
     public List<T> bstToArray(int type) {
         toArray.clear();
+        CustomizedBinaryTreeNew<T> temp = new CustomizedBinaryTreeNew<T>();
+        result = temp;
         if (type == 1) {
             traverseInOrder(tree);
         } else if (type == 2) {
@@ -148,11 +153,26 @@ public class CustomizedBinaryTreeNew<T extends Comparable<T>> implements TreeInt
         return toArray;
     }
 
+    // Method to print
+    public CustomizedBinaryTreeNew<T> print(int type) {
+        CustomizedBinaryTreeNew<T> temp = new CustomizedBinaryTreeNew<T>();
+        result = temp;
+        if (type == 1) {
+            traverseInOrder(tree);
+        } else if (type == 2) {
+            traversePreOrder(tree);
+        } else if (type == 3) {
+            traversePostOrder(tree);
+        }
+        return result;
+    }
+
     // Depth-First Search (In-order traversal)
     public void traverseInOrder(NodeNew<T> tree) {
         if (tree != null) {
             traverseInOrder(tree.left);
             toArray.add(tree.data);
+            result.add(tree.data);
             traverseInOrder(tree.right);
         }
     }
@@ -161,6 +181,7 @@ public class CustomizedBinaryTreeNew<T extends Comparable<T>> implements TreeInt
     public void traversePreOrder(NodeNew<T> tree) {
         if (tree != null) {
             toArray.add(tree.data);
+            result.add(tree.data);
             traversePreOrder(tree.left);
             traversePreOrder(tree.right);
         }
@@ -172,10 +193,13 @@ public class CustomizedBinaryTreeNew<T extends Comparable<T>> implements TreeInt
             traversePostOrder(tree.left);
             traversePostOrder(tree.right);
             toArray.add(tree.data);
+            result.add(tree.data);
         }
     }
 
-    @Override
+
+
+@Override
     public boolean isEmpty() {
         return tree == null;
     }
