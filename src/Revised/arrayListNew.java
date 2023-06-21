@@ -76,6 +76,7 @@ public class arrayListNew<T extends Comparable<T>> {
         }
         return -1;
     }
+
     public int indexof(T value) {
         Comparable[] clean = cleanArrayList();
         return linearSearch((T[]) clean, value);

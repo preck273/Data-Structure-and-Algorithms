@@ -91,11 +91,11 @@ public class RevisedMain {
         CustomizedBinaryTreeNew<Integer> tree = new CustomizedBinaryTreeNew<Integer>();
 
         // Add values by level
-        List<Integer> intvalues = Arrays.asList(8, 3, 10, 1, 6, 14, 4, 7, 13,11,9);
+        List<Integer> intvalues = Arrays.asList(1,2);
         tree.addByLevel(intvalues);
 
         // Test the getLevel function
-        int valueToFind = 6;
+        int valueToFind = 2;
         int level = tree.getLevel(valueToFind);
         System.out.println(valueToFind + " is on level: " + level);
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");

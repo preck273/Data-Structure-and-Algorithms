@@ -30,8 +30,6 @@ public class CustomizedBinaryTreeNew<T extends Comparable<T>> implements TreeInt
         return current;
     }
 
-
-
     @Override
     public void add(T data) {
         tree = addRecursive(tree, data);
@@ -50,45 +48,40 @@ public class CustomizedBinaryTreeNew<T extends Comparable<T>> implements TreeInt
             return;
         }
 
-        // Sort the values list
-        Collections.sort(values, new Comparator<T>() {
-            @Override
-            public int compare(T o1, T o2) {
-                return o1.compareTo(o2);
-            }
-        });
+        Collections.sort(values);
 
         Queue<NodeNew<T>> queue = new LinkedList<NodeNew<T>>();
         int size = values.size();
-        int level = 0;
-        int index = 0;
 
-        // Create a new root node with the first value
-        NodeNew<T> root = new NodeNew<T>(values.get(0));
+        // Create the root node with the middle value
+        NodeNew<T> root = new NodeNew<T>(values.get(size / 2));
         tree = root;
         queue.offer(root);
 
-        while (!queue.isEmpty() && index < size) {
+        int level = 1;
+        int leftIndex = 0;
+        int rightIndex = size - 1;
+
+        // Fill the tree level by level
+        while (!queue.isEmpty() && (leftIndex < rightIndex)) {
             int nodesAtLevel = (int) Math.pow(2, level);
 
             // Add nodes at the current level
-            for (int i = 0; i < nodesAtLevel && index < size; i++) {
+            for (int i = 0; i < nodesAtLevel; i++) {
                 NodeNew<T> parent = queue.poll();
 
                 // Create left child if available
-                if (index + 1 < size) {
-                    NodeNew<T> leftChild = new NodeNew<T>(values.get(index + 1));
+                if (leftIndex < rightIndex) {
+                    NodeNew<T> leftChild = new NodeNew<T>(values.get(++leftIndex));
                     parent.left = leftChild;
                     queue.offer(leftChild);
-                    index++;
                 }
 
                 // Create right child if available
-                if (index + 1 < size) {
-                    NodeNew<T> rightChild = new NodeNew<T>(values.get(index + 1));
+                if (leftIndex < rightIndex) {
+                    NodeNew<T> rightChild = new NodeNew<T>(values.get(++leftIndex));
                     parent.right = rightChild;
                     queue.offer(rightChild);
-                    index++;
                 }
             }
 
